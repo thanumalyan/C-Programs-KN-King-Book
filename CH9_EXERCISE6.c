@@ -5,21 +5,21 @@
 //digit (829, 3) returns 8. If k is greater than the number of digits in n, have the func-
 //tion return 0
 
-int digit (int n, int k);
+int digit (long int n, long int k);
 
 int main(void)
 {
-    int n, k;
+    long int n, k;
     // JUST FOR FUNCTION RUNNING PURPOSE
     printf("Enter n and k: ");
-    scanf("%d%d", &n, &k);
+    scanf("%ld%ld", &n, &k);
     
-    printf("Output: %d", digit(n, k));
+    printf("Output: %ld", digit(n, k));
 
     return 0;
 }
 
-int digit(int n, int k) 
+int digit(long int n,  long int k) 
 {
     int count = 0, num = n;
 
