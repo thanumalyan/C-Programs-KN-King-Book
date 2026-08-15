@@ -13,7 +13,7 @@ int main (void)
 {
     int size;
 
-    printf("\t\t--GPA Average Computer--\n\nEnter the number of grades: ");
+    printf("\t\t--GPA Average Calculator--\n\nEnter the number of grades: ");
     scanf("%d", &size);
 
     if (size <= 0) {printf("\nINVALID SIZE ENTRY!!!\nEXITED FROM THE PROGRAM.\n"); return 0; }
@@ -23,7 +23,7 @@ int main (void)
     printf("\nEnter the grades: ");
 
     for (int i = 0; i < size;) 
-        if ( ((c = getchar()) >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ) 
+        if ( ((c = getchar()) >= 'A' && c <= 'F' && c != 'E') || (c >= 'a' && c <= 'f' && c != 'e') ) 
             grades[i++] = c;
 
     printf("\nThe average of the grades: %.3f\n", compute_GPA(size, grades));
@@ -34,7 +34,7 @@ int main (void)
 float compute_GPA(int n, char grades[n]) {
     float sum = 0.0f;
     for (int i = 0; i < n; i++) {
-        switch (toupper(grades[i])) {
+        switch (toupper( (unsigned char) grades[i])) {
             case 'A': sum += 4; break;
             case 'B': sum += 3; break;
             case 'C': sum += 2; break;
