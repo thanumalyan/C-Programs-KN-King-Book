@@ -18,12 +18,12 @@ int main(void)
     printf("Enter the amount of taxable income: ");
     scanf("%f", &income);
 
-    if ( income < 750 ) taxDue = ( 1.0f / 100.0f ) * income;
-    else if ( income <= 2250 ) taxDue = 7.50f + ( ( 2.0f / 100.0f ) * income );
-    else if ( income <= 3750 ) taxDue = 37.50f + ( ( 3.0f / 100.f ) * income );
-    else if ( income <= 5250 ) taxDue = 82.50f + ( ( 4.0f / 100.0f ) * income );
-    else if ( income <= 7000 ) taxDue = 142.50f + ( ( 5.0f / 100.0f ) * income );
-    else taxDue = 230.00f + ( ( 6.0f / 100.0f )  * income );
+    if (income <= 750) taxDue = income * 0.01;
+    else if (income <= 2250) taxDue = 7.50 + (income - 750) * 0.02; 
+    else if (income <= 3750) taxDue = 37.50 + (income - 2250) * 0.03; 
+    else if (income <= 5250) taxDue = 82.50 + (income - 3750) * 0.04; 
+    else if (income <= 7000) taxDue = 142.50 + (income - 5250) * 0.05; 
+    else taxDue = 230.00 + (income - 7000) * 0.06;
 
     printf("Tax due: %.2f", taxDue);
 
