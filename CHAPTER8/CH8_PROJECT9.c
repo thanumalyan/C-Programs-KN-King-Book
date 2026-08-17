@@ -1,7 +1,6 @@
 #include <stdio.h>  
 #include <time.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 //Write a program that generates a "random walk" across a 10 × 10 array. The array will contain characters (all'. initially).
 //The program must randomly "walk" from element to element, always going up, down, left, or right by one element. 
@@ -31,100 +30,49 @@
 #define COLS 10
 #define PRINT_ARRAY_ELEMENTS(array, rows, cols) for (int i = 0; i < (rows); i++) {printf("\n"); for(int j = 0; j < (cols); j++) printf("%c ", array[i][j]);}
 
-int main(void)
+int main (void)
 {
-    char array[ROWS][COLS], letter;
-    int i, j, choice, size;
-    bool violation_occurred = false, termination;
+    char random_walk[ROWS][COLS];
+    int chosen_index, i, j, options[4], size = 0;
     
+    srand( (unsigned) time(NULL));
 
-    srand((unsigned) time(NULL));
+    for (i = 0; i < ROWS; i++)
+        for (j = 0; j < COLS; j++)
+            random_walk[i][j] = '.';
 
-    for (i = 0; i < ROWS; i++) 
-        for (j = 0; j < COLS; j++) array[i][j] = '.';
+    random_walk[0][0] = 'A';
 
     i = j = 0;
-    array[i][j] = 'A';
+  
+    for (char c = 'B'; c <= 'Z'; c++) {
 
-    for (letter = 'B'; letter <= 'Z'; letter++) {
-        choice = rand() % 4;
-        bool blocked[4] = {false};
-        int options[4] = {0, 1, 2, 3}; 
-        size = 4;
+        size = 0;
+        
+        if (i - 1 >= 0 && random_walk[i - 1][j] == '.') options[size++] = 0;    // UP
+        if (j - 1 >= 0 && random_walk[i][j - 1] == '.') options[size++] = 1;    // LEFT
+        if (i + 1 < ROWS && random_walk[i + 1][j] == '.') options[size++] = 2;  // DOWN
+        if (j + 1 < COLS && random_walk[i][j + 1] == '.') options[size++] = 3;  // RIGHT
+
+        if (size == 0) {
+            PRINT_ARRAY_ELEMENTS(random_walk, ROWS, COLS);
+            return 0;
+        }
 
 
-        do {
+        chosen_index = rand() % size;
 
-            switch (options[choice]) {
-                case 0:                                         /* LEFT */
-                        if (j - 1 < 0 || array[i][j - 1] != '.') {  
-                            choice = rand() % (--size);
-                            violation_occurred = true; 
-                            blocked[0] = true;
-                            
-                            
-                        }
-                        else {
-                            violation_occurred = false;
-                            array[i][--j] = letter;
-                        }
-                        break;
+        switch (options[chosen_index]) {
+            case 0: i--; break;
+            case 1: j--; break;
+            case 2: i++; break;
+            case 3: j++; break;
+        }
 
-                case 1:                                         /* RIGHT */
-                        if (j + 1 >= COLS || array[i][j + 1] != '.') {
-                            choice = rand() % 3;
-                            violation_occurred = true;
-                            blocked[1] = true;
-                            
-                        }
-                        else {
-                            violation_occurred = false;
-                            array[i][++j] = letter;
-                        }
-                        break;
-
-                case 2:                                         /* UP */
-                        if (i - 1 < 0 || array[i - 1][j] != '.') {
-                            choice = rand() % 3;
-                            violation_occurred = true;
-                            blocked[2] = true;
-                           
-                        }
-                        else {
-                            violation_occurred = false;
-                            array[--i][j] = letter;
-                        }
-                        break;
-
-                case 3:                                         /* DOWN */
-                        if (i + 1 >= ROWS || array[i + 1][j] != '.') {
-                            choice = rand() % 3;
-                            violation_occurred = true;
-                            blocked[3] = true;
-                            
-                        }
-                        else {
-                            violation_occurred = false;
-                            array[++i][j] = letter;
-                        }
-                        break;
-            }
-            termination = true;
-            for (int k = 0; k < 4; k++) if (blocked[k] == false) termination = false;
-
-            if (termination) {
-                printf("\n\n\tA RANDOM WALK\n\n");
-                PRINT_ARRAY_ELEMENTS(array, ROWS, COLS);
-                return 0;
-            }
-
-        } while (violation_occurred);
+        random_walk[i][j] = c;
     }
 
-    printf("\n\n\tA RANDOM WALK\n\n");
-
-    PRINT_ARRAY_ELEMENTS(array, ROWS, COLS);
+    PRINT_ARRAY_ELEMENTS(random_walk, ROWS, COLS);
 
     return 0;
-
 }
