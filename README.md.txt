@@ -11,7 +11,7 @@ The C Programming Language: A Modern Approach by K. N. King.
 - Chapter 5 — Completed
 - Chapter 6 — Completed
 - Chapter 7 — Completed
-- Chapter 8 — Completed
+- Chapter 8 — Completed (Need to polish some programs and need to complete few leftovers later)
 - Chapter 9 — Currently doing
 
 Each program contains the original exercise/question as comments
