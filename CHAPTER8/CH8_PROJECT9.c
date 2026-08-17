@@ -61,7 +61,7 @@ int main(void)
                             choice = rand() % (--size);
                             violation_occurred = true; 
                             blocked[0] = true;
-                            options = 
+                            
                             
                         }
                         else {
