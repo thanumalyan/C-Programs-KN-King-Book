@@ -38,7 +38,7 @@ int main(void)
 
     for (i = 0; i < 26; i++) 
         if (array[i] != 0) {
-            printf("The words are not anagrams.\n");
+            printf("The words are NOT anagrams.\n");
             return 0;
         }
 
