@@ -82,8 +82,6 @@ void create_magic_square (int n, int magic_square [99][99])
             row = prev_row;     col = prev_col;
         }
     }
-    
-    return;
 }
 
 void print_magic_square(int n, int magic_square[99][99]) 
@@ -94,8 +92,6 @@ void print_magic_square(int n, int magic_square[99][99])
             printf("%5d", magic_square[i][j]);
         } 
     }
-
-    return;
 }
 
 
