@@ -13,7 +13,7 @@
 
 /* external variables */
 char contents[STACK_SIZE];
-int top = 0;  //
+int top = 0;  //next free position
 
 /* function prototypes */
 void push(char element);
