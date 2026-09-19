@@ -13,7 +13,7 @@
 
 /* external variables */
 char contents[STACK_SIZE];
-int top = 0;  //convention: numbering starts from 1 and contents[0] is unused
+int top = 0;  //
 
 /* function prototypes */
 void push(char element);
